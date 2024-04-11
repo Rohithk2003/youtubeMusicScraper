@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function Main() {
+export default function Index() {
 	const [query, setQuery] = useState("");
 	const [downloadingDone, setDownloadingDone] = useState(false);
 	const [downloadingStarted, setDownloadingStarted] = useState(false);
@@ -21,7 +21,12 @@ export default function Main() {
 				setDownloadingDone(true);
 				setOutputPath(data.detail);
 				setDownloadingStarted(false);
-			});
+				setQuery("");
+				setTimeout(() => {
+					setDownloadingDone(false);
+				}, 5000);
+			})
+			.catch((err) => console.error(err));
 	};
 
 	return (

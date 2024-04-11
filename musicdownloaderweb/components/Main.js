@@ -10,12 +10,13 @@ export default function Main() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		fetch(`http://127.0.0.1:8000/music/scrap/?query=${query}`)
-			.then((res) => res.json())
-			.then((data) => {
-				setSearchSuggestions(data);
-			});
+		try {
+			fetch(`http://127.0.0.1:8000/music/scrap/?query=${query}`)
+				.then((res) => res.json())
+				.then((data) => {
+					setSearchSuggestions(data);
+				});
+		} catch (error) {}
 	};
 
 	return (
